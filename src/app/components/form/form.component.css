@@ -1,0 +1,19 @@
+input,
+.input-group-text {
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+}
+
+input {
+  border-left: none;
+}
+
+.input-group-text {
+  border-right: none;
+  background-color: #ffffff;
+  color: #63748b;
+}
+
+input::placeholder {
+  color: #63748b;
+}

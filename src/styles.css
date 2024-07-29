@@ -11,3 +11,14 @@
   padding: 0;
   color: #334155;
 }
+
+.btn-success {
+  background-color: #21c55d !important;
+  height: 38px;
+  border: none !important;
+}
+
+.btn-success:hover {
+  opacity: 0.8;
+  border: none;
+}
