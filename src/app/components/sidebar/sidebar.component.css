@@ -31,7 +31,7 @@ a {
   }
 }
 
-.active > span,
-.active > svg {
+.active > div > li > span,
+.active > div > li > i {
   font-weight: bold !important;
 }
