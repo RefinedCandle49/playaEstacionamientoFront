@@ -30,3 +30,8 @@ a {
     align-items: center;
   }
 }
+
+.active > div > li > span,
+.active > div > li > i {
+  font-weight: bold !important;
+}

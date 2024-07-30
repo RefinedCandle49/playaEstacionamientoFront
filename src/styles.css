@@ -14,11 +14,33 @@
 
 .btn-success {
   background-color: #21c55d !important;
-  height: 38px;
-  border: none !important;
 }
 
-.btn-success:hover {
+.btn-danger {
+  background-color: #dc3545 !important;
+}
+
+.btn-success,
+.btn-danger {
+  border: none !important;
+  border-radius: 4px !important;
+  height: 38px;
+}
+
+.btn-success:hover,
+.btn-danger:hover {
   opacity: 0.8;
   border: none;
+}
+
+th {
+  color: #334155 !important;
+}
+
+tr {
+  vertical-align: middle;
+}
+
+thead > tr > th {
+  font-weight: bold;
 }
