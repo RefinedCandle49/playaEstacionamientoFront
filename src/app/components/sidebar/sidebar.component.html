@@ -29,7 +29,12 @@
 
       <div class="cont-item rounded w-100 px-0 px-lg-3 px-sm-2 py-2">
         <li class="nav-item">
-          <a href="" class="link-inactive align-middle px-0">
+          <a
+            routerLink="/"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="align-middle px-0"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 1 24 24"
@@ -88,7 +93,12 @@
 
       <div class="cont-item rounded w-100 px-0 px-lg-3 px-sm-2 py-2">
         <li class="nav-item">
-          <a href="" class="link-active align-middle px-0">
+          <a
+            routerLink="history"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="align-middle px-0"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 1 24 24"

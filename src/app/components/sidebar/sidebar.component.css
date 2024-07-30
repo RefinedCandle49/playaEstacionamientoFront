@@ -30,3 +30,8 @@ a {
     align-items: center;
   }
 }
+
+.active > span,
+.active > svg {
+  font-weight: bold !important;
+}
