@@ -17,14 +17,15 @@
       </thead>
 
       <tbody>
-        <tr>
-          <th>James Butt</th>
-          <th>AUD-4753</th>
-          <th>2015-09-13</th>
-          <th>18:59</th>
-          <th>4 minutos</th>
-          <th><button class="btn btn-danger">Terminar</button></th>
-        </tr>
+        @for (parking of parking; track parking.id){
+          <tr >
+            <th>{{parking.cliente.name}}</th>
+            <th>{{parking.vehicle.plate}}</th>
+            <th>{{parking.checkin}}</th>
+            <th>{{parking.checkin}}</th>
+
+          </tr>
+        }
 
         <tr>
           <th>James Butt</th>
@@ -35,77 +36,6 @@
           <th><button class="btn btn-danger">Terminar</button></th>
         </tr>
 
-        <tr>
-          <th>James Butt</th>
-          <th>AUD-4753</th>
-          <th>2015-09-13</th>
-          <th>18:59</th>
-          <th>4 minutos</th>
-          <th><button class="btn btn-danger">Terminar</button></th>
-        </tr>
-
-        <tr>
-          <th>James Butt</th>
-          <th>AUD-4753</th>
-          <th>2015-09-13</th>
-          <th>18:59</th>
-          <th>4 minutos</th>
-          <th><button class="btn btn-danger">Terminar</button></th>
-        </tr>
-
-        <tr>
-          <th>James Butt</th>
-          <th>AUD-4753</th>
-          <th>2015-09-13</th>
-          <th>18:59</th>
-          <th>4 minutos</th>
-          <th><button class="btn btn-danger">Terminar</button></th>
-        </tr>
-
-        <tr>
-          <th>James Butt</th>
-          <th>AUD-4753</th>
-          <th>2015-09-13</th>
-          <th>18:59</th>
-          <th>4 minutos</th>
-          <th><button class="btn btn-danger">Terminar</button></th>
-        </tr>
-
-        <tr>
-          <th>James Butt</th>
-          <th>AUD-4753</th>
-          <th>2015-09-13</th>
-          <th>18:59</th>
-          <th>4 minutos</th>
-          <th><button class="btn btn-danger">Terminar</button></th>
-        </tr>
-
-        <tr>
-          <th>James Butt</th>
-          <th>AUD-4753</th>
-          <th>2015-09-13</th>
-          <th>18:59</th>
-          <th>4 minutos</th>
-          <th><button class="btn btn-danger">Terminar</button></th>
-        </tr>
-
-        <tr>
-          <th>James Butt</th>
-          <th>AUD-4753</th>
-          <th>2015-09-13</th>
-          <th>18:59</th>
-          <th>4 minutos</th>
-          <th><button class="btn btn-danger">Terminar</button></th>
-        </tr>
-
-        <tr>
-          <th>James Butt</th>
-          <th>AUD-4753</th>
-          <th>2015-09-13</th>
-          <th>18:59</th>
-          <th>4 minutos</th>
-          <th><button class="btn btn-danger">Terminar</button></th>
-        </tr>
       </tbody>
     </table>
   </div>

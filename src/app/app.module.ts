@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import {HttpClientModule, provideHttpClient} from '@angular/common/http';
 import {
   BrowserModule,
   provideClientHydration,
@@ -15,8 +16,8 @@ import { HistoryTableComponent } from './components/history-table/history-table.
 
 @NgModule({
   declarations: [AppComponent, SidebarComponent, ParkingComponent, FormComponent, ParkingTableComponent, HistoryComponent, HistoryTableComponent],
-  imports: [BrowserModule, AppRoutingModule],
-  providers: [provideClientHydration()],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  providers: [provideClientHydration(), provideHttpClient()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
