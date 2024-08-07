@@ -17,176 +17,18 @@
       </thead>
 
       <tbody>
+        @for (parking of parking; track parking.id){
         <tr>
-          <th>James Butt</th>
-          <th>AUD-4753</th>
-          <th>2015-09-13</th>
-          <th>18:59</th>
-          <th>19:00</th>
-          <th>s/ 1.00</th>
+          <th>{{ parking.cliente.name }}</th>
+          <th>{{ parking.vehicle.plate }}</th>
+          <th>{{ parking.checkin }}</th>
+          <th>{{ parking.checkout }}</th>
+          <th>
+            {{ parking.total | currency : "PEN" : "symbol" : "" : "es-PE" }}
+          </th>
+          <th><button class="btn btn-danger">Terminar</button></th>
         </tr>
-
-        <tr>
-          <th>James Butt</th>
-          <th>AUD-4753</th>
-          <th>2015-09-13</th>
-          <th>18:59</th>
-          <th>19:00</th>
-          <th>s/ 1.00</th>
-        </tr>
-
-        <tr>
-          <th>James Butt</th>
-          <th>AUD-4753</th>
-          <th>2015-09-13</th>
-          <th>18:59</th>
-          <th>19:00</th>
-          <th>s/ 1.00</th>
-        </tr>
-
-        <tr>
-          <th>James Butt</th>
-          <th>AUD-4753</th>
-          <th>2015-09-13</th>
-          <th>18:59</th>
-          <th>19:00</th>
-          <th>s/ 1.00</th>
-        </tr>
-
-        <tr>
-          <th>James Butt</th>
-          <th>AUD-4753</th>
-          <th>2015-09-13</th>
-          <th>18:59</th>
-          <th>19:00</th>
-          <th>s/ 1.00</th>
-        </tr>
-
-        <tr>
-          <th>James Butt</th>
-          <th>AUD-4753</th>
-          <th>2015-09-13</th>
-          <th>18:59</th>
-          <th>19:00</th>
-          <th>s/ 1.00</th>
-        </tr>
-
-        <tr>
-          <th>James Butt</th>
-          <th>AUD-4753</th>
-          <th>2015-09-13</th>
-          <th>18:59</th>
-          <th>19:00</th>
-          <th>s/ 1.00</th>
-        </tr>
-
-        <tr>
-          <th>James Butt</th>
-          <th>AUD-4753</th>
-          <th>2015-09-13</th>
-          <th>18:59</th>
-          <th>19:00</th>
-          <th>s/ 1.00</th>
-        </tr>
-
-        <tr>
-          <th>James Butt</th>
-          <th>AUD-4753</th>
-          <th>2015-09-13</th>
-          <th>18:59</th>
-          <th>19:00</th>
-          <th>s/ 1.00</th>
-        </tr>
-
-        <tr>
-          <th>James Butt</th>
-          <th>AUD-4753</th>
-          <th>2015-09-13</th>
-          <th>18:59</th>
-          <th>19:00</th>
-          <th>s/ 1.00</th>
-        </tr>
-
-        <tr>
-          <th>James Butt</th>
-          <th>AUD-4753</th>
-          <th>2015-09-13</th>
-          <th>18:59</th>
-          <th>19:00</th>
-          <th>s/ 1.00</th>
-        </tr>
-
-        <tr>
-          <th>James Butt</th>
-          <th>AUD-4753</th>
-          <th>2015-09-13</th>
-          <th>18:59</th>
-          <th>19:00</th>
-          <th>s/ 1.00</th>
-        </tr>
-
-        <tr>
-          <th>James Butt</th>
-          <th>AUD-4753</th>
-          <th>2015-09-13</th>
-          <th>18:59</th>
-          <th>19:00</th>
-          <th>s/ 1.00</th>
-        </tr>
-
-        <tr>
-          <th>James Butt</th>
-          <th>AUD-4753</th>
-          <th>2015-09-13</th>
-          <th>18:59</th>
-          <th>19:00</th>
-          <th>s/ 1.00</th>
-        </tr>
-
-        <tr>
-          <th>James Butt</th>
-          <th>AUD-4753</th>
-          <th>2015-09-13</th>
-          <th>18:59</th>
-          <th>19:00</th>
-          <th>s/ 1.00</th>
-        </tr>
-
-        <tr>
-          <th>James Butt</th>
-          <th>AUD-4753</th>
-          <th>2015-09-13</th>
-          <th>18:59</th>
-          <th>19:00</th>
-          <th>s/ 1.00</th>
-        </tr>
-
-        <tr>
-          <th>James Butt</th>
-          <th>AUD-4753</th>
-          <th>2015-09-13</th>
-          <th>18:59</th>
-          <th>19:00</th>
-          <th>s/ 1.00</th>
-        </tr>
-
-        <tr>
-          <th>James Butt</th>
-          <th>AUD-4753</th>
-          <th>2015-09-13</th>
-          <th>18:59</th>
-          <th>19:00</th>
-          <th>s/ 1.00</th>
-        </tr>
-
-        <tr>
-          <th>James Butt</th>
-          <th>AUD-4753</th>
-          <th>2015-09-13</th>
-          <th>18:59</th>
-          <th>19:00</th>
-          <th>s/ 1.00</th>
-        </tr>
+        }
       </tbody>
     </table>
   </div>
