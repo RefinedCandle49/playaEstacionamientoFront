@@ -9,7 +9,7 @@
         <tr>
           <th>Cliente</th>
           <th>Placa</th>
-          <th>Fecha</th>
+          <th>Fecha Entrada</th>
           <th>Hora Entrada</th>
           <th>
             <div class="d-flex align-items-center">
@@ -29,8 +29,8 @@
         <tr>
           <th>{{ parking.cliente.name }}</th>
           <th>{{ parking.vehicle.plate }}</th>
-          <th>{{ parking.checkin }}</th>
-          <th>{{ parking.checkin | date : "shortTime" }}</th>
+          <th>{{ parking.checkin | date : "MM/dd/yyyy" }}</th>
+          <th>{{ parking.checkin | date : "h:mm a" }}</th>
           <th>{{ getDateTime(parking.checkin) }}</th>
           <th><button class="btn btn-danger">Terminar</button></th>
         </tr>
