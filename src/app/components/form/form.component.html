@@ -1,4 +1,4 @@
-<form action="...">
+<form [formGroup]="parkingForm" (ngSubmit)="onSubmit()">
   <div class="row g-3 mb-3 mb-sm-0">
     <h4 class="fw-bold mb-0">Registrar Vehículo</h4>
 
@@ -7,7 +7,12 @@
         <span class="input-group-text" id="basic-addon1">
           <i class="fa-solid fa-user"></i>
         </span>
-        <input type="text" class="form-control" placeholder="Nombre Cliente" />
+        <input
+          type="text"
+          class="form-control"
+          formControlName="name"
+          placeholder="Nombre Cliente"
+        />
       </div>
     </div>
 
@@ -16,7 +21,12 @@
         <span class="input-group-text" id="basic-addon1">
           <i class="fa-solid fa-address-card"></i>
         </span>
-        <input type="text" class="form-control" placeholder="DNI Cliente" />
+        <input
+          type="text"
+          class="form-control"
+          formControlName="dni"
+          placeholder="DNI Cliente"
+        />
       </div>
     </div>
   </div>
@@ -46,7 +56,12 @@
         <span class="input-group-text" id="basic-addon1">
           <i class="fa-solid fa-audio-description"></i>
         </span>
-        <input type="text" class="form-control" placeholder="Placa Vehículo" />
+        <input
+          type="text"
+          class="form-control"
+          formControlName="plate"
+          placeholder="Placa Vehículo"
+        />
       </div>
     </div>
 
@@ -55,7 +70,12 @@
         <span class="input-group-text" id="basic-addon1">
           <i class="fa-solid fa-brush"></i>
         </span>
-        <input type="text" class="form-control" placeholder="Color / Modelo" />
+        <input
+          type="text"
+          class="form-control"
+          formControlName="description"
+          placeholder="Color / Modelo"
+        />
       </div>
     </div>
 
