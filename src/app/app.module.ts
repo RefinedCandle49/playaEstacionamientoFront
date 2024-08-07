@@ -15,6 +15,7 @@ import { HistoryComponent } from './components/history/history.component';
 import { HistoryTableComponent } from './components/history-table/history-table.component';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localeEsPE from '@angular/common/locales/es-PE';
+import { ReactiveFormsModule } from '@angular/forms';
 
 registerLocaleData(localeEsPE, 'es-PE');
 
@@ -28,7 +29,13 @@ registerLocaleData(localeEsPE, 'es-PE');
     HistoryComponent,
     HistoryTableComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, CommonModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    CommonModule,
+    ReactiveFormsModule,
+  ],
   providers: [
     provideClientHydration(),
     provideHttpClient(),
