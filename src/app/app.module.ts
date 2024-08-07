@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import {HttpClientModule, provideHttpClient} from '@angular/common/http';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 import {
   BrowserModule,
   provideClientHydration,
@@ -13,11 +13,27 @@ import { FormComponent } from './components/form/form.component';
 import { ParkingTableComponent } from './components/parking-table/parking-table.component';
 import { HistoryComponent } from './components/history/history.component';
 import { HistoryTableComponent } from './components/history-table/history-table.component';
+import { CommonModule, registerLocaleData } from '@angular/common';
+import localeEsPE from '@angular/common/locales/es-PE';
+
+registerLocaleData(localeEsPE, 'es-PE');
 
 @NgModule({
-  declarations: [AppComponent, SidebarComponent, ParkingComponent, FormComponent, ParkingTableComponent, HistoryComponent, HistoryTableComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
-  providers: [provideClientHydration(), provideHttpClient()],
+  declarations: [
+    AppComponent,
+    SidebarComponent,
+    ParkingComponent,
+    FormComponent,
+    ParkingTableComponent,
+    HistoryComponent,
+    HistoryTableComponent,
+  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, CommonModule],
+  providers: [
+    provideClientHydration(),
+    provideHttpClient(),
+    { provide: LOCALE_ID, useValue: 'es-PE' },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
