@@ -11,31 +11,30 @@
           <th>Placa</th>
           <th>Fecha</th>
           <th>Hora Entrada</th>
-          <th>Tiempo</th>
+          <th>
+            <div class="d-flex align-items-center">
+              <span class="fw-bold">Tiempo</span>
+              <span class="text-secondary mx-3">|</span>
+              <button (click)="updateAllTimes()" class="btn btn-reload p-0">
+                <i class="fa-solid fa-rotate-right"></i>
+              </button>
+            </div>
+          </th>
           <th>Acción</th>
         </tr>
       </thead>
 
       <tbody>
         @for (parking of parking; track parking.id){
-          <tr >
-            <th>{{parking.cliente.name}}</th>
-            <th>{{parking.vehicle.plate}}</th>
-            <th>{{parking.checkin}}</th>
-            <th>{{parking.checkin}}</th>
-
-          </tr>
-        }
-
         <tr>
-          <th>James Butt</th>
-          <th>AUD-4753</th>
-          <th>2015-09-13</th>
-          <th>18:59</th>
-          <th>4 minutos</th>
+          <th>{{ parking.cliente.name }}</th>
+          <th>{{ parking.vehicle.plate }}</th>
+          <th>{{ parking.checkin }}</th>
+          <th>{{ parking.checkin | date : "shortTime" }}</th>
+          <th>{{ getDateTime(parking.checkin) }}</th>
           <th><button class="btn btn-danger">Terminar</button></th>
         </tr>
-
+        }
       </tbody>
     </table>
   </div>

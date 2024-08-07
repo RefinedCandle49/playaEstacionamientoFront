@@ -8,3 +8,22 @@
 .title-table {
   border-bottom: 1px solid #e2e8f0;
 }
+
+.btn-reload {
+  line-height: 1;
+  border: none;
+  transition: transform 0.18s ease-in-out;
+}
+
+.btn-reload:active {
+  transform: rotate(360deg);
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
