@@ -34,17 +34,21 @@ export class ParkingTableComponent implements OnInit, OnDestroy {
     const checkinDate = new Date(checkin);
     const currentDate = new Date();
 
-    const minutes = Math.floor(
+    const totalMinutes = Math.floor(
       (currentDate.getTime() - checkinDate.getTime()) / 60000
     );
 
-    return `${minutes} min`;
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+
+    return `${hours}h ${minutes} min`;
   }
 
   // Actualizar los tiempos
   updateAllTimes(): void {
     this.parking = this.parking.map((record) => ({
       ...record,
+      hours: this.getDateTime(record.checkin),
       minutes: this.getDateTime(record.checkin),
     }));
   }
