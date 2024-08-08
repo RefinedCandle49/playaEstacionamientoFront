@@ -9,8 +9,17 @@ import { Subscription } from 'rxjs';
 })
 export class ParkingTableComponent implements OnInit, OnDestroy {
   parking: any[] = [];
+  selectedParking: any;
+  // nombres: string[];
   private parkingService = inject(ParkingService);
   private parkingSub?: Subscription;
+
+  // constructor() {
+  //   this.nombres = [];
+  //   for (let i = 0; i < 11; i++) {
+  //     this.nombres.push(`nombre ${i + 1}`);
+  //   }
+  // }
 
   ngOnInit(): void {
     this.getParkingData();
@@ -27,6 +36,56 @@ export class ParkingTableComponent implements OnInit, OnDestroy {
     this.parkingService.getOccupied().subscribe((parking: any) => {
       this.parking = parking;
     });
+  }
+
+  // Obtener datos por id
+  getDataForId(id: number) {
+    this.parkingService.getById(id).subscribe((parking: any) => {
+      this.selectedParking = parking;
+    });
+  }
+
+  // Actualizar registro
+  finishParking() {
+    if (this.selectedParking) {
+      const checkout = new Date().toLocaleString('sv-SE');
+      const total = this.calculateTotal(
+        this.selectedParking?.checkin,
+        checkout
+      );
+
+      const parkingData = {
+        total: total,
+        checkout: checkout,
+      };
+
+      this.parkingService
+        .update(this.selectedParking.id, parkingData)
+        .subscribe(
+          (response) => {
+            this.getParkingData();
+            this.getDataForId(this.selectedParking.id);
+            console.log('Actualizacion exitosa: ', response);
+          },
+          (error) => {
+            console.error('Error al actualizar:', error);
+          }
+        );
+    }
+  }
+
+  // Calcular monto total por hora
+  calculateTotal(checkin: string, checkout: string): number {
+    const checkinDate = new Date(checkin);
+    const checkoutDate = new Date(checkout);
+
+    const totalMinutes = Math.floor(
+      (checkoutDate.getTime() - checkinDate.getTime()) / 60000
+    );
+    const totalHours = Math.ceil(totalMinutes / 60); // CEIL: Redondear hacia arriba
+
+    const tariffHour = 1.5;
+    return totalHours * tariffHour;
   }
 
   // Calcular los minutos transcurridos desde la fecha checkin hasta la fecha actual
