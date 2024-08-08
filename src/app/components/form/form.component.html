@@ -38,15 +38,23 @@
       <div class="pe-3">
         <input
           type="radio"
-          name="typeVehicle"
+          formControlName="type"
           id="carro"
+          value="1"
+          name="type"
           class="me-2"
-          checked
         />
         <label for="carro">Carro</label>
       </div>
       <div class="ps-3">
-        <input type="radio" name="typeVehicle" id="moto" class="me-2" />
+        <input
+          type="radio"
+          formControlName="type"
+          id="moto"
+          value="2"
+          name="type"
+          class="me-2"
+        />
         <label for="moto">Moto</label>
       </div>
     </div>
@@ -61,20 +69,6 @@
           class="form-control"
           formControlName="plate"
           placeholder="Placa Vehículo"
-        />
-      </div>
-    </div>
-
-    <div class="col col-12 col-xxl-3 col-md-4 col-sm-6">
-      <div class="input-group mb-0 mb-md-3">
-        <span class="input-group-text" id="basic-addon1">
-          <i class="fa-solid fa-brush"></i>
-        </span>
-        <input
-          type="text"
-          class="form-control"
-          formControlName="description"
-          placeholder="Color / Modelo"
         />
       </div>
     </div>

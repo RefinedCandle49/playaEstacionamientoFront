@@ -18,7 +18,7 @@ export class FormComponent {
       name: '',
       dni: '',
       plate: '',
-      description: '',
+      type: '1',
     });
   }
 
@@ -36,7 +36,7 @@ export class FormComponent {
       },
       vehicle: {
         plate: formValues.plate,
-        description: formValues.description,
+        type: formValues.type,
       },
     };
 

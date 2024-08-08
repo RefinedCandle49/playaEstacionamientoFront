@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Subject, tap } from 'rxjs';
 
 @Injectable({
@@ -22,6 +22,17 @@ export class ParkingService {
       tap(() => {
         this.newParkingRegistered.next(); // Notificacion de nuevo registro
       })
+    );
+  }
+
+  getById(id: number) {
+    return this.http.get(`http://localhost:8080/parking/get/${id}`);
+  }
+
+  update(id: number, parking: any) {
+    return this.http.patch(
+      `http://localhost:8080/parking/finish/${id}`,
+      parking
     );
   }
 

@@ -22,11 +22,11 @@
           <th>{{ parking.cliente.name }}</th>
           <th>{{ parking.vehicle.plate }}</th>
           <th>{{ parking.checkin }}</th>
-          <th>{{ parking.checkout }}</th>
+          <th>{{ parking.checkin | date : "h:mm a" }}</th>
+          <th>{{ parking.checkout | date : "h:mm a" }}</th>
           <th>
             {{ parking.total | currency : "PEN" : "symbol" : "" : "es-PE" }}
           </th>
-          <th><button class="btn btn-danger">Terminar</button></th>
         </tr>
         }
       </tbody>
