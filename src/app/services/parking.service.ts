@@ -25,6 +25,10 @@ export class ParkingService {
     );
   }
 
+  getCount(){
+    return this.http.get('http://localhost:8080/parking/count');
+  }
+
   getById(id: number) {
     return this.http.get(`http://localhost:8080/parking/get/${id}`);
   }
