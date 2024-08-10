@@ -1,80 +1,118 @@
 <form [formGroup]="parkingForm" (ngSubmit)="onSubmit()">
   <div class="row g-3 mb-3 mb-sm-0">
-    <h4 class="fw-bold mb-0">Registrar Vehículo</h4>
+    <h4 class="fw-bold mb-0">Datos del Cliente</h4>
 
-    <div class="col col-12 col-xxl-3 col-md-4 col-sm-6">
-      <div class="input-group mb-0 mb-sm-3">
+    <div class="col col-12 col-xxl-3 col-md-4 col-sm-6 mb-0 mb-sm-3">
+      <div class="input-group">
         <span class="input-group-text" id="basic-addon1">
           <i class="fa-solid fa-user"></i>
         </span>
         <input
           type="text"
-          class="form-control"
           formControlName="name"
+          class="form-control"
+          [ngClass]="getErrorClass('name')"
+          minlength="3"
+          maxlength="100"
           placeholder="Nombre Cliente"
         />
       </div>
+      @if (parkingForm.get('name')?.touched && getErrorMessage('name')) {
+      <small class="text-danger">{{ getErrorMessage("name") }}</small>
+      }
     </div>
 
     <div class="col col-12 col-xxl-3 col-md-4 col-sm-6">
-      <div class="input-group mb-0 mb-sm-3">
+      <div class="input-group">
         <span class="input-group-text" id="basic-addon1">
           <i class="fa-solid fa-address-card"></i>
         </span>
         <input
           type="text"
-          class="form-control"
           formControlName="dni"
+          class="form-control"
+          [ngClass]="getErrorClass('dni')"
+          minlength="8"
+          maxlength="8"
           placeholder="DNI Cliente"
+          list="dni-list"
+          (input)="onDniChange($event)"
         />
+        <datalist id="dni-list">
+          @for (dni of dnis; track dni) {
+          <option [value]="dni">{{ dni }}</option>
+          }
+        </datalist>
       </div>
+      @if (parkingForm.get('dni')?.touched && getErrorMessage('dni')) {
+      <small class="text-danger">{{ getErrorMessage("dni") }}</small>
+      }
     </div>
   </div>
 
   <div class="row g-3 mb-3 mb-md-0">
-    <h4 class="fw-bold mb-0">Tipo Vehículo</h4>
+    <h4 class="fw-bold mb-0">Datos del Vehículo</h4>
 
-    <div class="col col-12 d-flex">
-      <div class="pe-3">
-        <input
-          type="radio"
-          formControlName="type"
-          id="carro"
-          value="1"
-          name="type"
-          class="me-2"
-        />
-        <label for="carro">Carro</label>
+    <div class="col col-12">
+      <div class="d-flex">
+        <div class="pe-3">
+          <input
+            type="radio"
+            id="carro"
+            name="type"
+            formControlName="type"
+            value="1"
+            class="me-2"
+            [ngClass]="getErrorClass('type')"
+          />
+          <label for="carro">Carro</label>
+        </div>
+        <div class="ps-3">
+          <input
+            type="radio"
+            id="moto"
+            name="type"
+            formControlName="type"
+            value="2"
+            class="me-2"
+            [ngClass]="getErrorClass('type')"
+          />
+          <label for="moto">Moto</label>
+        </div>
       </div>
-      <div class="ps-3">
-        <input
-          type="radio"
-          formControlName="type"
-          id="moto"
-          value="2"
-          name="type"
-          class="me-2"
-        />
-        <label for="moto">Moto</label>
-      </div>
+      @if (parkingForm.get('type')?.touched && getErrorMessage('type')) {
+      <small class="text-danger">{{ getErrorMessage("type") }}</small>
+      }
     </div>
 
-    <div class="col col-12 col-xxl-3 col-md-4 col-sm-6">
-      <div class="input-group mb-0 mb-md-3">
+    <div class="col col-12 col-xxl-3 col-md-4 col-sm-6 mb-0 mb-md-3">
+      <div class="input-group">
         <span class="input-group-text" id="basic-addon1">
           <i class="fa-solid fa-audio-description"></i>
         </span>
         <input
           type="text"
-          class="form-control"
           formControlName="plate"
+          class="form-control"
+          [ngClass]="getErrorClass('plate')"
+          minlength="7"
+          maxlength="7"
           placeholder="Placa Vehículo"
         />
       </div>
+      @if (parkingForm.get('plate')?.touched && getErrorMessage('plate')) {
+      <small class="text-danger">{{ getErrorMessage("plate") }}</small>
+      }
     </div>
 
     <div class="col col-12 col-xxl-6 col-md-4">
       <input type="submit" value="Registrar" class="btn btn-success" />
+      <!-- <input
+        type="submit"
+        [disabled]="!parkingForm.valid"
+        value="Registrar"
+        class="btn btn-success"
+      /> -->
     </div>
   </div>
 </form>

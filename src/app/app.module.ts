@@ -16,6 +16,9 @@ import { HistoryTableComponent } from './components/history-table/history-table.
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localeEsPE from '@angular/common/locales/es-PE';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { VehicleTypePipe } from './pipes/vehicle-type.pipe';
 
 registerLocaleData(localeEsPE, 'es-PE');
 
@@ -28,6 +31,7 @@ registerLocaleData(localeEsPE, 'es-PE');
     ParkingTableComponent,
     HistoryComponent,
     HistoryTableComponent,
+    VehicleTypePipe,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +39,8 @@ registerLocaleData(localeEsPE, 'es-PE');
     HttpClientModule,
     CommonModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     provideClientHydration(),

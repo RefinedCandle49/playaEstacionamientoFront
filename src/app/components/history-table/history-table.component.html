@@ -9,10 +9,10 @@
         <tr>
           <th>Cliente</th>
           <th>Placa</th>
-          <th>Fecha</th>
-          <th>Hora Entrada</th>
-          <th>Hora Salida</th>
+          <th>Fecha Entrada</th>
+          <th>Fecha Salida</th>
           <th>Monto</th>
+          <th></th>
         </tr>
       </thead>
 
@@ -21,15 +21,121 @@
         <tr>
           <th>{{ parking.cliente.name }}</th>
           <th>{{ parking.vehicle.plate }}</th>
-          <th>{{ parking.checkin }}</th>
-          <th>{{ parking.checkin | date : "h:mm a" }}</th>
-          <th>{{ parking.checkout | date : "h:mm a" }}</th>
+          <th>{{ parking.checkin | date : "MM/dd/yyyy" }}</th>
+          <th>{{ parking.checkout | date : "MM/dd/yyyy" }}</th>
           <th>
             {{ parking.total | currency : "PEN" : "symbol" : "" : "es-PE" }}
+          </th>
+          <th>
+            <button
+              type="button"
+              (click)="getDataForId(parking.id)"
+              class="btn btn-primary"
+              data-bs-target="#modalDetails"
+              data-bs-toggle="modal"
+            >
+              Detalles
+            </button>
           </th>
         </tr>
         }
       </tbody>
     </table>
+  </div>
+
+  <div
+    class="modal fade"
+    id="modalDetails"
+    aria-hidden="true"
+    aria-labelledby="modalDetailsLabel"
+    tabindex="-1"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="modalDetailsLabel">Más detalles</h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <strong>Cliente: </strong>
+              <p>
+                {{ selectedParking?.cliente.name }}
+              </p>
+            </div>
+            <div class="col">
+              <strong>DNI: </strong>
+              <p>{{ selectedParking?.cliente.dni }}</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <strong>Vehículo: </strong>
+              <p>{{ selectedParking?.vehicle.type | vehicleType }}</p>
+            </div>
+            <div class="col">
+              <strong>Placa: </strong>
+              <p>
+                {{ selectedParking?.vehicle.plate }}
+              </p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <strong>Fecha Entrada: </strong>
+              <p>
+                {{ selectedParking?.checkin | date : "MM/dd/yyyy" }}
+              </p>
+            </div>
+            <div class="col">
+              <strong>Hora: </strong>
+              <p>
+                {{ selectedParking?.checkin | date : "h:mm a" }}
+              </p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <strong>Fecha Salida: </strong>
+              <p>
+                {{ selectedParking?.checkout | date : "MM/dd/yyyy" }}
+              </p>
+            </div>
+            <div class="col">
+              <strong>Hora: </strong>
+              <p>
+                {{ selectedParking?.checkout | date : "h:mm a" }}
+              </p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <strong>Monto Total: </strong>
+              <p>
+                {{
+                  selectedParking?.total
+                    | currency : "PEN" : "symbol" : "" : "es-PE"
+                }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="modal-footer">
+          <button class="btn btn-warning" data-bs-dismiss="modal">
+            Imprimir
+          </button>
+        </div> -->
+      </div>
+    </div>
   </div>
 </div>
