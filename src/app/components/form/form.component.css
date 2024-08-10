@@ -4,9 +4,9 @@ input,
   border-radius: 4px;
 }
 
-input {
+/* input {
   border-left: none;
-}
+} */
 
 .input-group-text {
   border-right: none;
