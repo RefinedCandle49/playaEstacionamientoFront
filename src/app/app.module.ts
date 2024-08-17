@@ -15,10 +15,12 @@ import { HistoryComponent } from './components/history/history.component';
 import { HistoryTableComponent } from './components/history-table/history-table.component';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localeEsPE from '@angular/common/locales/es-PE';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { VehicleTypePipe } from './pipes/vehicle-type.pipe';
+import { MainComponent } from './components/main/main.component';
+import {LoginComponent} from "./components/login/login.component";
 
 registerLocaleData(localeEsPE, 'es-PE');
 
@@ -32,6 +34,8 @@ registerLocaleData(localeEsPE, 'es-PE');
     HistoryComponent,
     HistoryTableComponent,
     VehicleTypePipe,
+    MainComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +45,7 @@ registerLocaleData(localeEsPE, 'es-PE');
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    FormsModule,
   ],
   providers: [
     provideClientHydration(),
