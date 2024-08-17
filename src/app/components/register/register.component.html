@@ -1,0 +1,26 @@
+<div class="parent">
+  <div class="container" id="container">
+    <div class="form-container sign-in">
+      <form>
+        <h1>Crear cuenta</h1>
+        <input type="text" name="name" [(ngModel)]="signUpObj.name" placeholder="Nombre">
+        <input type="email" name="email" [(ngModel)]="signUpObj.email" placeholder="Correo electrónico">
+        <input type="password" name="password" [(ngModel)]="signUpObj.password" placeholder="Contraseña">
+        <button (click)="onRegister()">Crear cuenta</button>
+      </form>
+    </div>
+
+    <div class="toggle-container">
+      <div class="toggle">
+        <div class="toggle-panel toggle-right">
+          <h1>¿Estás registrado?</h1>
+          <button routerLink="/login"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }">Inicia sesión
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

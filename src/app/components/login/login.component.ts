@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import swal from "sweetalert";
 
 @Component({
   selector: 'app-login',
@@ -17,21 +18,6 @@ export class LoginComponent {
   constructor(private router: Router){}
 
 
-  onRegister() {
-    debugger;
-    const localUser = localStorage.getItem('angular17users');
-    if(localUser != null) {
-      const users =  JSON.parse(localUser);
-      users.push(this.signUpObj);
-      localStorage.setItem('angular17users', JSON.stringify(users))
-    } else {
-      const users = [];
-      users.push(this.signUpObj);
-      localStorage.setItem('angular17users', JSON.stringify(users))
-    }
-    alert('Registration Success')
-  }
-
   onLogin() {
     debugger;
     const localUsers =  localStorage.getItem('angular17users');
@@ -40,11 +26,10 @@ export class LoginComponent {
 
       const isUserPresent =  users.find( (user:SignUpModel)=> user.email == this.loginObj.email && user.password == this.loginObj.password);
       if(isUserPresent != undefined) {
-        alert("User Found...");
         localStorage.setItem('loggedUser', JSON.stringify(isUserPresent));
         this.router.navigateByUrl('/parking');
       } else {
-        alert("No User Found")
+        swal("Oops!", "Usuario no encontrado", "error");
       }
     }
   }

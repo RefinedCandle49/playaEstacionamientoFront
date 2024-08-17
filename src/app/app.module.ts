@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { VehicleTypePipe } from './pipes/vehicle-type.pipe';
 import { MainComponent } from './components/main/main.component';
 import {LoginComponent} from "./components/login/login.component";
+import { RegisterComponent } from './components/register/register.component';
 
 registerLocaleData(localeEsPE, 'es-PE');
 
@@ -35,7 +36,8 @@ registerLocaleData(localeEsPE, 'es-PE');
     HistoryTableComponent,
     VehicleTypePipe,
     MainComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
