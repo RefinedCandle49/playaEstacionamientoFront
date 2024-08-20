@@ -1,197 +1,228 @@
-<div class="card py-2">
-  <div class="title-table pb-2">
-    <h4 class="fw-bold mb-0 px-3">Lista de Estacionamiento</h4>
-  </div>
+<div class="card">
+    <div class="p-4">
+        <div class="pb-2">
+            <h4 class="fw-bold mb-0">Lista de Estacionamiento</h4>
+        </div>
 
-  <div class="table-responsive px-2">
-    <table class="table table-borderless mb-0">
-      <thead>
-        <tr>
-          <th>N°</th>
-          <th>Cliente</th>
-          <th>DNI</th>
-          <th>Vehículo</th>
-          <th>Placa</th>
-          <th>Fecha Entrada</th>
-          <th>
-            <div class="d-flex align-items-center">
-              <span class="fw-bold">Tiempo</span>
-              <span class="text-secondary mx-3">|</span>
-              <button (click)="updateAllTimes()" class="btn btn-reload p-0">
-                <i class="fa-solid fa-rotate-right"></i>
-              </button>
+        <div class="table-responsive">
+            <table class="table table-borderless mb-0">
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Cliente</th>
+                        <th>DNI</th>
+                        <th>Vehículo</th>
+                        <th>Placa</th>
+                        <th>Fecha Entrada</th>
+                        <th>
+                            <div class="d-flex align-items-center">
+                                <span class="fw-bold">Tiempo</span>
+                                <span class="text-secondary mx-3">|</span>
+                                <button
+                                    (click)="updateAllTimes()"
+                                    class="btn btn-reload p-0"
+                                >
+                                    <i class="fa-solid fa-rotate-right"></i>
+                                </button>
+                            </div>
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @for (parking of parking; track parking.id; let i = $index)
+                    {
+                    <tr>
+                        <th>{{ i + 1 }}</th>
+                        <th>{{ parking.cliente.name }}</th>
+                        <th>{{ parking.cliente.dni }}</th>
+                        <th>{{ parking.vehicle.type | vehicleType }}</th>
+                        <th>{{ parking.vehicle.plate }}</th>
+                        <th>
+                            {{ parking.checkin | date : "MM/dd/yyyy, h:mm a" }}
+                        </th>
+                        <th>{{ getDateTime(parking.checkin) }}</th>
+                        <th>
+                            <div>
+                                <button
+                                    type="button"
+                                    (click)="getDataForId(parking.id)"
+                                    class="btn btn-danger mx-1"
+                                    data-bs-target="#modalConfirm"
+                                    data-bs-toggle="modal"
+                                >
+                                    Terminar
+                                </button>
+                            </div>
+                        </th>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div
+            class="modal fade"
+            id="modalConfirm"
+            aria-hidden="true"
+            aria-labelledby="modalConfirmLabel"
+            tabindex="-1"
+        >
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalConfirmLabel">
+                            ¿Deseas terminar el tiempo de parqueo?
+                        </h1>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="mb-0">
+                            El tiempo estimado es de:
+                            <strong>{{
+                                getDateTime(selectedParking?.checkin)
+                            }}</strong>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" data-bs-dismiss="modal">
+                            Cancelar
+                        </button>
+                        <button
+                            class="btn btn-primary"
+                            data-bs-target="#modalTicket"
+                            data-bs-toggle="modal"
+                            (click)="finishParking()"
+                        >
+                            Aceptar
+                        </button>
+                    </div>
+                </div>
             </div>
-          </th>
-          <th></th>
-        </tr>
-      </thead>
+        </div>
+        <div
+            class="modal fade"
+            id="modalTicket"
+            aria-hidden="true"
+            aria-labelledby="modalTicketLabel"
+            tabindex="-1"
+        >
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalTicketLabel">
+                            Comprobante de Pago
+                        </h1>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col">
+                                <strong>Cliente: </strong>
+                                <p>
+                                    {{ selectedParking?.cliente.name }}
+                                </p>
+                            </div>
+                            <div class="col">
+                                <strong>DNI: </strong>
+                                <p>{{ selectedParking?.cliente.dni }}</p>
+                            </div>
+                        </div>
 
-      <tbody>
-        @for (parking of parking; track parking.id; let i = $index) {
-        <tr>
-          <th>{{ i + 1 }}</th>
-          <th>{{ parking.cliente.name }}</th>
-          <th>{{ parking.cliente.dni }}</th>
-          <th>{{ parking.vehicle.type | vehicleType }}</th>
-          <th>{{ parking.vehicle.plate }}</th>
-          <th>{{ parking.checkin | date : "MM/dd/yyyy, h:mm a" }}</th>
-          <th>{{ getDateTime(parking.checkin) }}</th>
-          <th>
-            <div>
-              <button
-                type="button"
-                (click)="getDataForId(parking.id)"
-                class="btn btn-danger mx-1"
-                data-bs-target="#modalConfirm"
-                data-bs-toggle="modal"
-              >
-                Terminar
-              </button>
+                        <div class="row">
+                            <div class="col">
+                                <strong>Vehículo : </strong>
+                                <p>
+                                    {{
+                                        selectedParking?.vehicle.type
+                                            | vehicleType
+                                    }}
+                                </p>
+                            </div>
+                            <div class="col">
+                                <strong>Placa: </strong>
+                                <p>
+                                    {{ selectedParking?.vehicle.plate }}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <strong>Fecha Entrada: </strong>
+                                <p>
+                                    {{
+                                        selectedParking?.checkin
+                                            | date : "MM/dd/yyyy"
+                                    }}
+                                </p>
+                            </div>
+                            <div class="col">
+                                <strong>Hora: </strong>
+                                <p>
+                                    {{
+                                        selectedParking?.checkin
+                                            | date : "h:mm a"
+                                    }}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <strong>Fecha Salida: </strong>
+                                <p>
+                                    {{
+                                        selectedParking?.checkout
+                                            | date : "MM/dd/yyyy"
+                                    }}
+                                </p>
+                            </div>
+                            <div class="col">
+                                <strong>Hora: </strong>
+                                <p>
+                                    {{
+                                        selectedParking?.checkout
+                                            | date : "h:mm a"
+                                    }}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <strong>Monto Total: </strong>
+                                <p>
+                                    {{
+                                        selectedParking?.total
+                                            | currency
+                                                : "PEN"
+                                                : "symbol"
+                                                : ""
+                                                : "es-PE"
+                                    }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-warning" data-bs-dismiss="modal">
+                            Imprimir
+                        </button>
+                    </div>
+                </div>
             </div>
-          </th>
-        </tr>
-        }
-      </tbody>
-    </table>
-  </div>
-
-  <div
-    class="modal fade"
-    id="modalConfirm"
-    aria-hidden="true"
-    aria-labelledby="modalConfirmLabel"
-    tabindex="-1"
-  >
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="modalConfirmLabel">
-            ¿Deseas terminar el tiempo de parqueo?
-          </h1>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
         </div>
-        <div class="modal-body">
-          <p class="mb-0">
-            El tiempo estimado es de:
-            <strong>{{ getDateTime(selectedParking?.checkin) }}</strong>
-          </p>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-danger" data-bs-dismiss="modal">
-            Cancelar
-          </button>
-          <button
-            class="btn btn-primary"
-            data-bs-target="#modalTicket"
-            data-bs-toggle="modal"
-            (click)="finishParking()"
-          >
-            Aceptar
-          </button>
-        </div>
-      </div>
     </div>
-  </div>
-  <div
-    class="modal fade"
-    id="modalTicket"
-    aria-hidden="true"
-    aria-labelledby="modalTicketLabel"
-    tabindex="-1"
-  >
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="modalTicketLabel">
-            Comprobante de Pago
-          </h1>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col">
-              <strong>Cliente: </strong>
-              <p>
-                {{ selectedParking?.cliente.name }}
-              </p>
-            </div>
-            <div class="col">
-              <strong>DNI: </strong>
-              <p>{{ selectedParking?.cliente.dni }}</p>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col">
-              <strong>Vehículo : </strong>
-              <p>{{ selectedParking?.vehicle.type | vehicleType }}</p>
-            </div>
-            <div class="col">
-              <strong>Placa: </strong>
-              <p>
-                {{ selectedParking?.vehicle.plate }}
-              </p>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col">
-              <strong>Fecha Entrada: </strong>
-              <p>
-                {{ selectedParking?.checkin | date : "MM/dd/yyyy" }}
-              </p>
-            </div>
-            <div class="col">
-              <strong>Hora: </strong>
-              <p>
-                {{ selectedParking?.checkin | date : "h:mm a" }}
-              </p>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col">
-              <strong>Fecha Salida: </strong>
-              <p>
-                {{ selectedParking?.checkout | date : "MM/dd/yyyy" }}
-              </p>
-            </div>
-            <div class="col">
-              <strong>Hora: </strong>
-              <p>
-                {{ selectedParking?.checkout | date : "h:mm a" }}
-              </p>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col">
-              <strong>Monto Total: </strong>
-              <p>
-                {{
-                  selectedParking?.total
-                    | currency : "PEN" : "symbol" : "" : "es-PE"
-                }}
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-warning" data-bs-dismiss="modal">
-            Imprimir
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>

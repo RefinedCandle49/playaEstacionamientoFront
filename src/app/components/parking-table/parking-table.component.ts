@@ -10,16 +10,8 @@ import { Subscription } from 'rxjs';
 export class ParkingTableComponent implements OnInit, OnDestroy {
   parking: any[] = [];
   selectedParking: any;
-  // nombres: string[];
   private parkingService = inject(ParkingService);
   private parkingSub?: Subscription;
-
-  // constructor() {
-  //   this.nombres = [];
-  //   for (let i = 0; i < 11; i++) {
-  //     this.nombres.push(`nombre ${i + 1}`);
-  //   }
-  // }
 
   ngOnInit(): void {
     this.getParkingData();
@@ -35,6 +27,7 @@ export class ParkingTableComponent implements OnInit, OnDestroy {
   getParkingData() {
     this.parkingService.getOccupied().subscribe((parking: any) => {
       this.parking = parking;
+      this.parkingService.setParkingData(parking);
     });
   }
 
@@ -110,6 +103,11 @@ export class ParkingTableComponent implements OnInit, OnDestroy {
       hours: this.getDateTime(record.checkin),
       minutes: this.getDateTime(record.checkin),
     }));
+  }
+
+  // Leer placas de la tabla
+  readPlates(plate: string): boolean {
+    return this.parking.some((record) => record.vehicle.plate === plate);
   }
 
   ngOnDestroy() {
