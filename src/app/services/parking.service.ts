@@ -1,15 +1,23 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError, Subject, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, Subject, tap, throwError } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ParkingService {
+  // Propiedades
   private http = inject(HttpClient);
   private toastr = inject(ToastrService);
   private newParkingRegistered = new Subject<void>(); // Subject para nofiticar cambios
+  private parkingData = new BehaviorSubject<any[]>([]);
+  parkingData$ = this.parkingData.asObservable();
+
+  // Métodos públicos
+  setParkingData(parking: any[]) {
+    this.parkingData.next(parking);
+  }
 
   getFree() {
     return this.http.get('http://localhost:8080/parking/free');
@@ -29,7 +37,7 @@ export class ParkingService {
           progressAnimation: 'decreasing',
           positionClass: 'toast-bottom-right',
         });
-        this.newParkingRegistered.next(); // Notificacion de nuevo registro
+        this.newParkingRegistered.next();
       })
     );
   }
@@ -61,7 +69,7 @@ export class ParkingService {
     return this.http.get(`http://localhost:8080/client/dni/${dni}`);
   }
 
-  // Validacion de Errores
+  // Métodos privados
   private handleError(error: HttpErrorResponse) {
     if (error.status === 500) {
       this.toastr.error(
