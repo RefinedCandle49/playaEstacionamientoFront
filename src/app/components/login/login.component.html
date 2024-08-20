@@ -1,31 +1,27 @@
-<div class="parent">
-  <div class="container" [ngClass]="isSignDivVisiable ? 'active' :'' " id="container">
-    <div class="form-container sign-up">
-      <form>
-        <h1>Iniciar sesión</h1>
-        <input type="email" name="email" [(ngModel)]="loginObj.email" placeholder="Correo electrónico">
-        <input type="password" name="password" [(ngModel)]="loginObj.password" placeholder="Contraseña">
-        <button (click)="onLogin()">Iniciar sesión</button>
-      </form>
-    </div>
-    <div class="form-container sign-in">
+<div class="parent d-flex align-items-center bg-cover">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <div class="container mx-auto text-center" [ngClass]="isSignDivVisiable ? 'active' :'' " id="container">
+        <div class="form-container sign-up">
+            <button id="register" routerLink="/register"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }">Crear cuenta</button>
+            <form>
+                <h1 class="m-3">Iniciar sesión</h1>
+                <label for="email">
+                    <i class="fa-solid fa-envelope fa-sm" style="color: #ffffff;"></i>
+                    <input type="email" name="email" [(ngModel)]="loginObj.email" placeholder="Correo electrónico ">
+                </label>
+                <br>
+                <label for="password">
+                    <i class="fa-solid fa-lock fa-sm" style="color: #ffffff;"></i>
+                    <input type="password" name="password" [(ngModel)]="loginObj.password" placeholder="Contraseña">
+                </label>
+                <br>
+                <label>
+                    <button (click)="onLogin()">Ingresar</button>
+                </label>
 
-    </div>
-    <div class="toggle-container">
-      <div class="toggle">
-        <div class="toggle-panel toggle-left">
-          <h1>¿No tienes cuenta?</h1>
-          <button routerLink="/register"
-                  routerLinkActive="active"
-                  [routerLinkActiveOptions]="{ exact: true }">Crear cuenta</button>
+            </form>
         </div>
-        <div class="toggle-panel toggle-right">
-          <h1>Hello, Friend!</h1>
-          <p>Register with your personal details to use all of site features</p>
-          <button type="button" class="hidden" id="register" (click)="isSignDivVisiable = true">Sign Up</button>
-        </div>
-      </div>
     </div>
-  </div>
 </div>
-
