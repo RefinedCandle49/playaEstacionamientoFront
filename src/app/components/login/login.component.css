@@ -1,18 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
-    color: white;
-}
-
 .bg-cover {
-    background-image: url('/assets/img/parking.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+        url("/assets/img/parking.jpg");
     background-size: cover;
     background-attachment: fixed;
+    background-position: center;
     height: 100vh;
+}
+
+h1,
+label,
+i,
+input,
+.btn-change {
+    color: #ffffff;
 }
 
 button {
@@ -25,12 +25,21 @@ button:hover {
     font-weight: bold;
 }
 
-label {
+label,
+.btn-user {
     border: none;
     outline: none;
-    background: rgba(255, 255, 255, 0.2);
     border-radius: 10em;
-    padding: 1em;
+    padding: 0.8em 1.2em;
+}
+
+label {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.btn-user {
+    background: rgba(255, 255, 255, 0.685);
+    color: #09090b !important;
 }
 
 input {
@@ -40,20 +49,25 @@ input {
     padding-left: 0.6em;
 }
 
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0) inset;
+    -webkit-text-fill-color: #ffffff;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
 ::placeholder {
     color: white;
     opacity: 1;
-    font-weight: bold;
 }
 
 ::-ms-input-placeholder {
     color: white;
 }
 
-#register{
+#register {
     font-weight: bold;
 }
 
-form > label{
+form > label {
     margin-bottom: 1em;
 }

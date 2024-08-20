@@ -1,34 +1,64 @@
 <div class="parent d-flex align-items-center bg-cover">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
     <div class="container mx-auto text-center" id="container">
         <div class="form-container sign-in">
-            <button id="register" routerLink="/login"
-                    routerLinkActive="active"
-                    [routerLinkActiveOptions]="{ exact: true }">Inicia sesión
+            <button
+                id="register"
+                routerLink="/login"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="btn-change"
+            >
+                Inicia sesión
             </button>
             <form>
                 <h1 class="m-3">Crear cuenta</h1>
                 <label for="name">
-                    <i class="fa-regular fa-user fa-sm" style="color: #ffffff;"></i>
-                    <input type="text" name="name" [(ngModel)]="signUpObj.name" placeholder="Nombre">
+                    <i
+                        class="fa-regular fa-user fa-sm"
+                        style="color: #ffffff"
+                    ></i>
+                    <input
+                        type="text"
+                        name="name"
+                        [(ngModel)]="signUpObj.name"
+                        placeholder="Nombre"
+                    />
                 </label>
-                <br>
+                <br />
                 <label for="email">
-                    <i class="fa-solid fa-envelope fa-sm" style="color: #ffffff;"></i>
-                    <input type="email" name="email" [(ngModel)]="signUpObj.email" placeholder="Correo electrónico">
+                    <i
+                        class="fa-solid fa-envelope fa-sm"
+                        style="color: #ffffff"
+                    ></i>
+                    <input
+                        type="email"
+                        name="email"
+                        [(ngModel)]="signUpObj.email"
+                        placeholder="Correo electrónico"
+                    />
                 </label>
-                <br>
+                <br />
                 <label for="password">
-                    <i class="fa-solid fa-lock fa-sm" style="color: #ffffff;"></i>
-                    <input type="password" name="password" [(ngModel)]="signUpObj.password" placeholder="Contraseña">
+                    <i
+                        class="fa-solid fa-lock fa-sm"
+                        style="color: #ffffff"
+                    ></i>
+                    <input
+                        type="password"
+                        name="password"
+                        [(ngModel)]="signUpObj.password"
+                        placeholder="Contraseña"
+                    />
                 </label>
-                <br>
-                <label>
-                    <button (click)="onRegister()">Crear cuenta</button>
-                </label>
-
+                <br />
+                <button (click)="onRegister()" class="btn-user">
+                    Crear cuenta
+                </button>
             </form>
         </div>
     </div>
 </div>
-
