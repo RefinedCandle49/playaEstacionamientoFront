@@ -1,82 +1,132 @@
-
-
-
-
 <div class="container-fluid p-0 overflow-hidden">
-  <div class="row g-0 vh-100 overflow-auto">
-    <header class="sidebar col-auto col-2 col-sm-4 col-md-3 col-xl-3 col-xxl-2">
-      <nav
-        class="d-flex flex-column align-items-center align-items-sm-start min-vh-100 pt-3"
-      >
-        <div class="d-block text-center w-100">
-          <div>
-        <span class="d-none d-sm-inline fs-6 text-secondary"
-        >Estacionamiento</span
+    <div class="row g-0 vh-100 overflow-auto">
+        <header
+            class="sidebar col-auto col-2 col-sm-4 col-md-3 col-xl-3 col-xxl-2"
         >
-          </div>
-          <div>
-            <span class="d-none d-sm-inline fs-4 fw-bold w-100">LA PARKA</span>
-          </div>
-        </div>
+            <nav
+                class="d-flex flex-column align-items-center align-items-sm-start min-vh-100 sticky-top"
+            >
+                <div
+                    class="menu-bar w-100 not-border d-flex align-items-center px-2"
+                >
+                    <div
+                        class="cont-link w-100 px-3 px-lg-3 px-md-3 px-sm-2 py-2"
+                    >
+                        <div class="nav-item">
+                            <i class="fa-solid fa-torii-gate"></i>
+                            <span class="d-none d-sm-inline ms-3"
+                                >La Parka - Estacionamiento</span
+                            >
+                        </div>
+                    </div>
+                </div>
 
-        <hr class="line" />
+                <div
+                    class="d-block head-sidebar text-center w-100 d-none d-sm-inline"
+                >
+                    <div class="py-4">
+                        <div>
+                            <img
+                                src="/assets/user.png"
+                                class="icon-user img-fluid rounded-circle mb-2"
+                            />
+                        </div>
+                        <div>
+                            <span
+                                class="d-none d-sm-inline text-white fs-4 w-100"
+                                >{{ loggedUser?.name }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
 
-        <ul
-          class="nav flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100"
-          id="menu"
+                <ul
+                    class="nav flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100 p-2"
+                    id="menu"
+                >
+                    <div class="w-100 py-2">
+                        <li class="nav-item">
+                            <span
+                                class="d-none d-sm-inline text-secondary ms-3 ms-lg-3 ms-sm-2"
+                                >MENU</span
+                            >
+                        </li>
+                    </div>
+
+                    <a
+                        routerLink="/parking"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        class="align-middle w-100 px-0 mb-1"
+                    >
+                        <div
+                            class="cont-link w-100 px-0 px-lg-3 px-md-3 px-sm-2 py-2"
+                        >
+                            <li class="nav-item">
+                                <i class="fa-solid fa-car"></i>
+                                <span class="d-none d-sm-inline ms-3"
+                                    >Estacionamiento</span
+                                >
+                            </li>
+                        </div>
+                    </a>
+
+                    <a
+                        routerLink="/history"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        class="align-middle w-100 px-0"
+                    >
+                        <div
+                            class="cont-link w-100 px-0 px-lg-3 px-md-3 px-sm-2 py-2"
+                        >
+                            <li class="nav-item">
+                                <i class="fa-solid fa-clock-rotate-left"></i>
+                                <span class="d-none d-sm-inline ms-3"
+                                    >Historial</span
+                                >
+                            </li>
+                        </div>
+                    </a>
+                </ul>
+
+                <a
+                    class="align-middle w-100 px-0 no-active px-2 pb-3"
+                    (click)="onLogoff()"
+                >
+                    <div
+                        class="cont-item cont-link w-100 px-0 px-lg-3 px-md-3 px-sm-2 py-2"
+                    >
+                        <div class="nav-item">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            <span class="d-none d-sm-inline ms-3"
+                                >Cerrar Sesión</span
+                            >
+                        </div>
+                    </div>
+                </a>
+            </nav>
+        </header>
+
+        <main
+            class="col-auto col-10 col-sm-8 col-md-9 col-xl-9 col-xxl-10 flex-column h-sm-100"
         >
-          <div class="w-100 py-2">
-            <li class="nav-item">
-          <span class="d-none d-sm-inline text-secondary ms-3 ms-lg-3 ms-sm-2"
-          >MENU</span
-          >
-            </li>
-          </div>
-
-          <a
-            routerLink="/parking"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-            class="align-middle w-100 px-0"
-          >
-            <div class="cont-item rounded w-100 px-0 px-lg-3 px-sm-2 py-2">
-              <li class="nav-item">
-                <i class="fa-solid fa-car"></i>
-                <span class="d-none d-sm-inline ms-2">Estacionamiento</span>
-              </li>
-            </div>
-          </a>
-
-          <a
-            routerLink="/history"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-            class="align-middle w-100 px-0"
-          >
-            <div class="cont-item rounded w-100 px-0 px-lg-3 px-sm-2 py-2">
-              <li class="nav-item">
-                <i class="fa-solid fa-clock-rotate-left"></i>
-                <span class="d-none d-sm-inline ms-2">Historial</span>
-              </li>
-            </div>
-          </a>
-
-            <div class="cont-item rounded w-100 px-0 px-lg-3 px-sm-2 py-2">
-              <li class="nav-item">
-                <form class="d-flex">
-                  <span class="">{{loggedUser?.email}} </span>
-                  <button class="btn btn-primary" type="button" (click)="onLogoff()">Cerrar Sesión</button>
-                </form>
-              </li>
+            <div
+                class="menu-bar d-flex align-items-center justify-content-end px-5"
+            >
+                <a (click)="toggleTheme()" class="align-middle px-0 no-active">
+                    <div class="cont-item px-3 px-lg-3 px-md-3 px-sm-2 py-2">
+                        <div class="nav-item">
+                            <i class="fa-solid fa-palette"></i>
+                            <span class="d-none d-sm-inline ms-3"
+                                >Cambiar Tema</span
+                            >
+                        </div>
+                    </div></a
+                >
             </div>
 
-        </ul>
-      </nav>
-    </header>
-    <main
-      class="col-auto col-10 col-sm-8 col-md-9 col-xl-9 col-xxl-10 flex-column h-sm-100"
-    >
-      <router-outlet></router-outlet>
-    </main>
-  </div>
+            <router-outlet></router-outlet>
+        </main>
+    </div>
 </div>

@@ -1,26 +1,47 @@
 <div class="parent d-flex align-items-center bg-cover">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <div class="container mx-auto text-center" [ngClass]="isSignDivVisiable ? 'active' :'' " id="container">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <div
+        class="container mx-auto text-center"
+        [ngClass]="isSignDivVisiable ? 'active' : ''"
+        id="container"
+    >
         <div class="form-container sign-up">
-            <button id="register" routerLink="/register"
-                    routerLinkActive="active"
-                    [routerLinkActiveOptions]="{ exact: true }">Crear cuenta</button>
-            <form>
+            <button
+                id="register"
+                routerLink="/register"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="btn-change"
+            >
+                Crear cuenta
+            </button>
+            <form class="">
                 <h1 class="m-3">Iniciar sesión</h1>
                 <label for="email">
-                    <i class="fa-solid fa-envelope fa-sm" style="color: #ffffff;"></i>
-                    <input type="email" name="email" [(ngModel)]="loginObj.email" placeholder="Correo electrónico ">
+                    <i class="fa-solid fa-envelope fa-sm"></i>
+                    <input
+                        type="email"
+                        name="email"
+                        [(ngModel)]="loginObj.email"
+                        placeholder="Correo electrónico "
+                        class=""
+                    />
                 </label>
-                <br>
+                <br />
                 <label for="password">
-                    <i class="fa-solid fa-lock fa-sm" style="color: #ffffff;"></i>
-                    <input type="password" name="password" [(ngModel)]="loginObj.password" placeholder="Contraseña">
+                    <i class="fa-solid fa-lock fa-sm"></i>
+                    <input
+                        type="password"
+                        name="password"
+                        [(ngModel)]="loginObj.password"
+                        placeholder="Contraseña"
+                    />
                 </label>
-                <br>
-                <label>
-                    <button (click)="onLogin()">Ingresar</button>
-                </label>
-
+                <br />
+                <button (click)="onLogin()" class="btn-user">Ingresar</button>
             </form>
         </div>
     </div>

@@ -10,17 +10,15 @@ import { truncate } from 'fs';
   styleUrl: './form.component.css',
 })
 export class FormComponent implements OnInit {
+  // Propiedades
   parkingForm: FormGroup;
   dnis: any[] = [];
+  parkingRecords: any[] = [];
   private parkingService = inject(ParkingService);
   private toastr = inject(ToastrService);
   private fb = inject(FormBuilder);
 
-  ngOnInit() {
-    this.loadDni();
-  }
-
-  // Constructor de los datos del formulario
+  // Constructor
   constructor() {
     this.parkingForm = this.fb.group({
       name: [
@@ -43,40 +41,25 @@ export class FormComponent implements OnInit {
     });
   }
 
+  // Ciclo de Vida
+  ngOnInit() {
+    this.loadDni();
+    this.getParkingRecords();
+  }
+
+  // Metodos de negocio
+  getParkingRecords() {
+    this.parkingService.parkingData$.subscribe((records: any[]) => {
+      this.parkingRecords = records;
+    });
+  }
+
   loadDni() {
     this.parkingService.getAllDnis().subscribe((dnis: any) => {
       this.dnis = dnis;
     });
   }
 
-  // Obtener al cliente por DNI
-  onDniChange(event: Event) {
-    const inputElement = event.target as HTMLInputElement;
-    const dni = inputElement.value;
-
-    if (dni.length === 8) {
-      this.parkingService.getClientebyDni(dni).subscribe((response: any) => {
-        if (response && response.length > 0) {
-          this.parkingForm.get('name')?.disable();
-          this.parkingForm.get('name')?.setValue(response[0]);
-        } else {
-          this.parkingForm.get('name')?.enable();
-          this.toastr.info(
-            'No se encontró un cliente con ese DNI',
-            'Información',
-            {
-              timeOut: 3000,
-              progressBar: true,
-              progressAnimation: 'decreasing',
-              positionClass: 'toast-bottom-right',
-            }
-          );
-        }
-      });
-    }
-  }
-
-  // Enviar datos del formulario mediante un JSON
   onSubmit() {
     // Validar envío del formulario
     if (this.parkingForm.invalid) {
@@ -96,6 +79,23 @@ export class FormComponent implements OnInit {
 
     // getRawValue: Leer campos disableb
     const formValues = this.parkingForm.getRawValue();
+    const plateExists = this.parkingRecords.some(
+      (record) => record.vehicle.plate === formValues.plate
+    );
+
+    if (plateExists) {
+      this.toastr.error(
+        'No se puede volver a registrar la placa.',
+        'Placa Registrada',
+        {
+          timeOut: 3000,
+          progressBar: true,
+          progressAnimation: 'decreasing',
+          positionClass: 'toast-bottom-right',
+        }
+      );
+      return;
+    }
 
     const parkingData = {
       checkin: new Date().toLocaleString('sv-SE'),
@@ -150,7 +150,7 @@ export class FormComponent implements OnInit {
     );
   }
 
-  // Validaciones del Formulario
+  // Validaciones del formulario
   hasErrors(controlName: string, errorType: string) {
     return (
       this.parkingForm.get(controlName)?.hasError(errorType) &&
@@ -186,5 +186,32 @@ export class FormComponent implements OnInit {
       }
     }
     return null;
+  }
+
+  // Eventos del componente
+  onDniChange(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    const dni = inputElement.value;
+
+    if (dni.length === 8) {
+      this.parkingService.getClientebyDni(dni).subscribe((response: any) => {
+        if (response && response.length > 0) {
+          this.parkingForm.get('name')?.disable();
+          this.parkingForm.get('name')?.setValue(response[0]);
+        } else {
+          this.parkingForm.get('name')?.enable();
+          this.toastr.info(
+            'No se encontró un cliente con ese DNI',
+            'Información',
+            {
+              timeOut: 3000,
+              progressBar: true,
+              progressAnimation: 'decreasing',
+              positionClass: 'toast-bottom-right',
+            }
+          );
+        }
+      });
+    }
   }
 }
