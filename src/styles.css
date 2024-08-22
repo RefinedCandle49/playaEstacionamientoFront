@@ -106,3 +106,21 @@ thead > tr > th {
 .toast-title {
     color: white !important;
 }
+
+.btn-mark {
+    background-color: transparent;
+    box-sizing: content-box;
+    width: 1em;
+    height: 1em;
+    padding: 0.25em 0.25em;
+    border: 0;
+    opacity: 0.5;
+}
+
+.fa-xmark {
+    font-size: 1.5em;
+}
+
+.btn-mark:hover {
+    opacity: 1;
+}
