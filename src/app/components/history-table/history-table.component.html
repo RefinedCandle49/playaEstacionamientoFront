@@ -18,12 +18,13 @@
                 </thead>
 
                 <tbody>
-                    @for (parking of parking; track parking.id){
+                    @for (parking of parking | paginate: { itemsPerPage: 11,
+                    currentPage: p }; track parking.id ){
                     <tr>
                         <th>{{ parking.cliente.name }}</th>
                         <th>{{ parking.vehicle.plate }}</th>
-                        <th>{{ parking.checkin | date : "MM/dd/yyyy" }}</th>
-                        <th>{{ parking.checkout | date : "MM/dd/yyyy" }}</th>
+                        <th>{{ parking.checkin | date : "dd/MM/yyyy" }}</th>
+                        <th>{{ parking.checkout | date : "dd/MM/yyyy" }}</th>
                         <th>
                             {{
                                 parking.total
@@ -34,7 +35,7 @@
                             <button
                                 type="button"
                                 (click)="getDataForId(parking.id)"
-                                class="btn btn-primary mx-1"
+                                class="btn btn-secondary mx-1"
                                 data-bs-target="#modalDetails"
                                 data-bs-toggle="modal"
                             >
@@ -42,7 +43,7 @@
                             </button>
                             <button
                                 (click)="getDataForId(parking.id)"
-                                class="btn btn-warning mx-1"
+                                class="btn btn-info mx-1"
                                 data-bs-target="#modalConfirm"
                                 data-bs-toggle="modal"
                             >
@@ -53,6 +54,15 @@
                     }
                 </tbody>
             </table>
+
+            <div class="d-flex align-items-center justify-content-end pt-4">
+                <pagination-controls
+                    previousLabel=""
+                    nextLabel=""
+                    (pageChange)="p = $event"
+                    class="my-pagination"
+                ></pagination-controls>
+            </div>
         </div>
 
         <div
@@ -83,6 +93,7 @@
                         </button>
                         <button
                             class="btn btn-primary"
+                            data-bs-dismiss="modal"
                             (click)="downloadTicketExit()"
                         >
                             Aceptar
