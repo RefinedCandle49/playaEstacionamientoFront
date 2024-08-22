@@ -13,7 +13,7 @@
                         <th>Fecha Entrada</th>
                         <th>Fecha Salida</th>
                         <th>Monto</th>
-                        <th></th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
 
@@ -30,21 +30,64 @@
                                     | currency : "PEN" : "symbol" : "" : "es-PE"
                             }}
                         </th>
-                        <th>
+                        <th class="d-flex">
                             <button
                                 type="button"
                                 (click)="getDataForId(parking.id)"
-                                class="btn btn-primary"
+                                class="btn btn-primary mx-1"
                                 data-bs-target="#modalDetails"
                                 data-bs-toggle="modal"
                             >
                                 Detalles
+                            </button>
+                            <button
+                                (click)="getDataForId(parking.id)"
+                                class="btn btn-warning mx-1"
+                                data-bs-target="#modalConfirm"
+                                data-bs-toggle="modal"
+                            >
+                                Descargar
                             </button>
                         </th>
                     </tr>
                     }
                 </tbody>
             </table>
+        </div>
+
+        <div
+            class="modal fade"
+            id="modalConfirm"
+            aria-hidden="true"
+            aria-labelledby="modalConfirmLabel"
+            tabindex="-1"
+        >
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header modal-confirm">
+                        <h1 class="modal-title fs-5" id="modalIngresoLabel">
+                            ¿Desea imprimir el comprobante de pago?
+                        </h1>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                    <div class="modal-footer modal-confirm">
+                        <button class="btn btn-danger" data-bs-dismiss="modal">
+                            Cancelar
+                        </button>
+                        <button
+                            class="btn btn-primary"
+                            (click)="downloadTicketExit()"
+                        >
+                            Aceptar
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div
