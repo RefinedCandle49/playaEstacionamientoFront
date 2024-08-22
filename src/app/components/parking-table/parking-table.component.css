@@ -34,6 +34,11 @@ table > thead {
     border-bottom: 1px solid var(--border);
 }
 
+.modal-ingreso {
+    border-bottom: none !important;
+    border-top: none !important;
+}
+
 .modal-footer {
     border-top: 1px solid var(--border);
 }
