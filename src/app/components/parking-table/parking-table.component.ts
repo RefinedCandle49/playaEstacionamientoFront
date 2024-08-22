@@ -79,7 +79,7 @@ export class ParkingTableComponent implements OnInit, OnDestroy {
         const totalHours = Math.ceil(totalMinutes / 60); // CEIL: Redondear hacia arriba
 
         const tariffHour = 1.5;
-        return totalHours * tariffHour;
+        return totalHours > 0 ? totalHours * tariffHour : tariffHour;
     }
 
     // Calcular los minutos transcurridos desde la fecha checkin hasta la fecha actual
