@@ -6,11 +6,13 @@ import { jsPDF } from 'jspdf';
 @Component({
     selector: 'app-parking-table',
     templateUrl: './parking-table.component.html',
-    styleUrl: './parking-table.component.css',
+    styleUrl: './parking-table.component.scss',
 })
 export class ParkingTableComponent implements OnInit, OnDestroy {
     parking: any[] = [];
     selectedParking: any;
+    p: number = 1;
+    // itemsPerPage: number = 10;
     private parkingService = inject(ParkingService);
     private parkingSub?: Subscription;
 
@@ -281,9 +283,7 @@ export class ParkingTableComponent implements OnInit, OnDestroy {
             doc.save(
                 `Ticket_${new Date(
                     this.selectedParking.checkin
-                ).toLocaleDateString()}_${
-                    this.selectedParking.vehicle.plate
-                }.pdf`
+                ).toLocaleDateString()}_${this.selectedParking.id}.pdf`
             );
         }
     }
