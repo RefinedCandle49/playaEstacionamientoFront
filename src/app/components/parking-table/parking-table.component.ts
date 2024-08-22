@@ -107,9 +107,16 @@ export class ParkingTableComponent implements OnInit, OnDestroy {
     }
 
     // Leer placas de la tabla
-    readPlates(plate: string): boolean {
-        return this.parking.some((record) => record.vehicle.plate === plate);
-    }
+    // readPlates(plate: string): boolean {
+    //     return this.parking.some((record) => record.vehicle.plate === plate);
+    // }
+
+    // readPlates(plateLetters: string, plateNumbers: string): boolean {
+    //     const combinedPlate = `${plateLetters}-${plateNumbers}`;
+    //     return this.parking.some(
+    //         (record) => record.vehicle.plate === combinedPlate
+    //     );
+    // }
 
     ngOnDestroy() {
         this.parkingSub?.unsubscribe(); // Limpiar suscripcion

@@ -47,6 +47,7 @@
                         placeholder="DNI Cliente"
                         list="dni-list"
                         (input)="onDniChange($event)"
+                        (keypress)="isNumber($event)"
                     />
                     <datalist id="dni-list">
                         @for (dni of dnis; track dni) {
@@ -114,6 +115,7 @@
                         minlength="7"
                         maxlength="7"
                         placeholder="Placa Vehículo"
+                        oninput="this.value = this.value.toUpperCase()"
                     />
                 </div>
                 @if (parkingForm.get('plate')?.touched &&
