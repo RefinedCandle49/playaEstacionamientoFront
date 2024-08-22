@@ -33,3 +33,10 @@ table > thead {
 .modal-footer {
     border-top: 1px solid var(--border);
 }
+
+/* .my-pagination ::ng-deep .ngx-pagination .current {
+    background: var(--background-theme);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin: 0 !important;
+} */

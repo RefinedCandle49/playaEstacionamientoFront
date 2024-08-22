@@ -32,19 +32,27 @@
                 </thead>
 
                 <tbody>
-                    @for (parking of parking; track parking.id; let i = $index)
-                    {
+                    @for (parking of parking | paginate: { itemsPerPage: 5,
+                    currentPage: p }; track parking.id; let i = $index) {
                     <tr>
-                        <th>{{ i + 1 }}</th>
+                        <th>{{ i + 1 + (p - 1) * 5 }}</th>
                         <th>{{ parking.cliente.name }}</th>
                         <th>{{ parking.cliente.dni }}</th>
                         <th>{{ parking.vehicle.type | vehicleType }}</th>
                         <th>{{ parking.vehicle.plate }}</th>
                         <th>
-                            {{ parking.checkin | date : "MM/dd/yyyy, h:mm a" }}
+                            {{ parking.checkin | date : "dd/MM/yyyy, h:mm a" }}
                         </th>
                         <th>{{ getDateTime(parking.checkin) }}</th>
                         <th class="d-flex">
+                            <button
+                                (click)="getDataForId(parking.id)"
+                                class="btn btn-warning mx-1"
+                                data-bs-target="#modalIngreso"
+                                data-bs-toggle="modal"
+                            >
+                                Imprimir
+                            </button>
                             <button
                                 type="button"
                                 (click)="getDataForId(parking.id)"
@@ -54,19 +62,20 @@
                             >
                                 Terminar
                             </button>
-                            <button
-                                (click)="getDataForId(parking.id)"
-                                class="btn btn-warning mx-1"
-                                data-bs-target="#modalIngreso"
-                                data-bs-toggle="modal"
-                            >
-                                Imprimir
-                            </button>
                         </th>
                     </tr>
                     }
                 </tbody>
             </table>
+
+            <div class="d-flex align-items-center justify-content-end pt-4">
+                <pagination-controls
+                    previousLabel=""
+                    nextLabel=""
+                    (pageChange)="p = $event"
+                    class="my-pagination"
+                ></pagination-controls>
+            </div>
         </div>
 
         <div
@@ -97,6 +106,7 @@
                         </button>
                         <button
                             class="btn btn-primary"
+                            data-bs-dismiss="modal"
                             (click)="printTicketEntry()"
                         >
                             Aceptar

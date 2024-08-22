@@ -22,6 +22,7 @@ import { VehicleTypePipe } from './pipes/vehicle-type.pipe';
 import { MainComponent } from './components/main/main.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 registerLocaleData(localeEsPE, 'es-PE');
 
@@ -48,6 +49,7 @@ registerLocaleData(localeEsPE, 'es-PE');
         BrowserAnimationsModule,
         ToastrModule.forRoot(),
         FormsModule,
+        NgxPaginationModule,
     ],
     providers: [
         provideClientHydration(),

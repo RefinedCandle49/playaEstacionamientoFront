@@ -5,11 +5,13 @@ import jsPDF from 'jspdf';
 @Component({
     selector: 'app-history-table',
     templateUrl: './history-table.component.html',
-    styleUrl: './history-table.component.css',
+    styleUrl: './history-table.component.scss',
 })
 export class HistoryTableComponent {
     parking: any[] = [];
     selectedParking: any;
+    p: number = 1;
+    // itemsPerPage: number = 10;
     private parkingService = inject(ParkingService);
 
     ngOnInit(): void {
@@ -136,9 +138,7 @@ export class HistoryTableComponent {
             doc.save(
                 `Ticket_${new Date(
                     this.selectedParking.checkin
-                ).toLocaleDateString()}_${
-                    this.selectedParking.vehicle.plate
-                }.pdf`
+                ).toLocaleDateString()}_${this.selectedParking.id}.pdf`
             );
         }
     }
