@@ -201,6 +201,16 @@ export class FormComponent implements OnInit {
         return null;
     }
 
+    isNumber(event: KeyboardEvent): boolean {
+        // No permitir ingreso de letras para DNI
+        const charCode = event.which ? event.which : event.keyCode;
+
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    }
+
     // Eventos del componente
     onDniChange(event: Event) {
         const inputElement = event.target as HTMLInputElement;

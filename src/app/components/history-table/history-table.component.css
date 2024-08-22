@@ -27,6 +27,7 @@ table > thead {
 
 .modal-header {
     border-bottom: 1px solid var(--border);
+    justify-content: space-between;
 }
 
 .modal-footer {

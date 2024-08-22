@@ -79,7 +79,7 @@ export class ParkingTableComponent implements OnInit, OnDestroy {
         const totalHours = Math.ceil(totalMinutes / 60); // CEIL: Redondear hacia arriba
 
         const tariffHour = 1.5;
-        return totalHours * tariffHour;
+        return totalHours > 0 ? totalHours * tariffHour : tariffHour;
     }
 
     // Calcular los minutos transcurridos desde la fecha checkin hasta la fecha actual
@@ -107,9 +107,16 @@ export class ParkingTableComponent implements OnInit, OnDestroy {
     }
 
     // Leer placas de la tabla
-    readPlates(plate: string): boolean {
-        return this.parking.some((record) => record.vehicle.plate === plate);
-    }
+    // readPlates(plate: string): boolean {
+    //     return this.parking.some((record) => record.vehicle.plate === plate);
+    // }
+
+    // readPlates(plateLetters: string, plateNumbers: string): boolean {
+    //     const combinedPlate = `${plateLetters}-${plateNumbers}`;
+    //     return this.parking.some(
+    //         (record) => record.vehicle.plate === combinedPlate
+    //     );
+    // }
 
     ngOnDestroy() {
         this.parkingSub?.unsubscribe(); // Limpiar suscripcion
