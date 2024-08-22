@@ -73,6 +73,10 @@ thead > tr > th {
     background-color: #017ad9 !important;
 }
 
+.btn-info {
+    background-color: #59bacc !important;
+    color: white !important;
+}
 .btn-warning,
 .toast-warning {
     background-color: #ffba01 !important;
@@ -82,6 +86,7 @@ thead > tr > th {
 .btn-success,
 .btn-danger,
 .btn-primary,
+.btn-info,
 .btn-secondary,
 .btn-warning {
     border: none !important;
@@ -92,6 +97,7 @@ thead > tr > th {
 .btn-success:hover,
 .btn-danger:hover,
 .btn-primary:hover,
+.btn-info:hover,
 .btn-secondary:hover,
 .btn-warning:hover {
     opacity: 0.8;
